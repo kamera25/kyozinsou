@@ -61,7 +61,7 @@ public class NPCController : IHuman
                               think.Value = THINK.RUN;
                               aimPoint.Value = finalEscapePoint;
                               knowFinalEscapePoint = true;
-                });
+                }).AddTo(this.gameObject);
                 break;
         }
     }

@@ -32,7 +32,7 @@ public class ItemInventoryController : MonoBehaviour
 		inventory.Add(ITEM.NONE, 1);
         for (int i = 1; i < itemLength; i++)
         {
-            inventory.Add( (ITEM)i, 1);
+            inventory.Add( (ITEM)i, 0);
         }
 	}
 
