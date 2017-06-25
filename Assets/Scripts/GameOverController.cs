@@ -6,21 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameOverController : MonoBehaviour 
 {
     [SerializeField]
-    Transform waterTrans;
-    Transform mainCameraTrans;
+    GameObject waterTrans;
 
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        mainCameraTrans = GameObject.FindWithTag("MainCamera").transform;
-    }
-
-	// Use this for initialization
-	void Update () 
-    {
-        if( mainCameraTrans.position.y - waterTrans.position.y < 0.2F)
+        if(other.gameObject == waterTrans)
         {
             SceneManager.LoadScene("mainStage");
         }
-	}
-	
+    }
+
 }
