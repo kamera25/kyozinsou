@@ -7,7 +7,7 @@ using UniRx.Triggers;
 public class EarthquarkCameraController : MonoBehaviour 
 {
     [SerializeField]
-    float fixEQTime = 10F;
+    float fixEQTime = 3F;
 
     [SerializeField]
     float quarkLimit = 0.4F;

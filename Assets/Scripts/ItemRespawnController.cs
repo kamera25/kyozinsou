@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class ItemRespawnController : MonoBehaviour 
+public class ItemRespawnController : IItem
 {
 
     [SerializeField]
@@ -21,11 +21,12 @@ public class ItemRespawnController : MonoBehaviour
 	
     void RespawnItem( ItemInventoryController.ITEM itype)
     {
-        GameObject item = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
+        GameObject item = LoadItem(itype);
         item.name = itype.ToString();
 
-        ItemController itemCtr = item.GetComponent<ItemController>();
+        ItemController itemCtr = item.AddComponent<ItemController>();
 		itemCtr.SetItem(itype);
+
         itemCtr.nowGet
                .Where( d => d == true)
                .Subscribe( _=> 

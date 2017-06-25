@@ -16,7 +16,7 @@ public class VRLookAtBoard : MonoBehaviour
     [SerializeField]
     private Text timerText;
 
-    ReactiveProperty<float> timer = new ReactiveProperty<float>();
+    public ReactiveProperty<float> timer = new ReactiveProperty<float>();
 
 	// Use this for initialization
 	void Start()
@@ -24,7 +24,7 @@ public class VRLookAtBoard : MonoBehaviour
         timer.Value = startTime;
 
         timer.Where( t => t < 0)
-             .Subscribe(_ => Destroy(canvas.gameObject))
+             .Subscribe(_ => Destroy(canvas.gameObject, 1F))
              .AddTo(this.gameObject);
 
         this.UpdateAsObservable()

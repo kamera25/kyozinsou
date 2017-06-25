@@ -8,13 +8,18 @@ public class ItemInventoryController : MonoBehaviour
     public enum ITEM
     {
         NONE = 0,
+        AIDKIT,
+        CLOCK,
         LIGHT,
-        WATCH,
-        RADIO
+        MOBILEBATTERY,
+        MOBILEPHONE,
+        RADIO,
+        SEPACHE
     }
 
     Dictionary<ITEM, int> inventory = new Dictionary<ITEM, int>();
-    public int itemLength{
+    public int itemLength
+    {
         get{
             return Enum.GetNames(typeof(ITEM)).Length;
         }
@@ -23,11 +28,12 @@ public class ItemInventoryController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-
-        inventory.Add( ITEM.NONE, 1);
-		inventory.Add( ITEM.LIGHT, 0);	
-        inventory.Add( ITEM.RADIO, 0);
-        inventory.Add( ITEM.WATCH, 0);
+        // 初期化
+		inventory.Add(ITEM.NONE, 1);
+        for (int i = 1; i < itemLength; i++)
+        {
+            inventory.Add( (ITEM)i, 1);
+        }
 	}
 
     public ITEM GetNextItem( ITEM nowElement)

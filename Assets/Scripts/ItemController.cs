@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour 
@@ -10,6 +11,12 @@ public class ItemController : MonoBehaviour
     ItemInventoryController.ITEM item;
 
     public ReactiveProperty<bool> nowGet = new ReactiveProperty<bool>(false);
+
+    private void Start()
+    {
+        this.UpdateAsObservable()
+            .Subscribe( _ => this.transform.Rotate(Vector3.up * 15F * Time.deltaTime));
+    }
 
     public void SetItem( ItemInventoryController.ITEM i)
     {

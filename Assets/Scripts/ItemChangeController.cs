@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
-public class ItemChangeController : MonoBehaviour
+public class ItemChangeController : IItem
 {
     ItemInventoryController itemInv;
     ReactiveProperty<ItemInventoryController.ITEM> nowItem
@@ -23,8 +23,7 @@ public class ItemChangeController : MonoBehaviour
         // アイテムプレファブのロード
         for (int i = 0; i < itemInv.itemLength; i++)
         {
-            string path = "Items/" + (ItemInventoryController.ITEM)i;
-            GameObject item = Instantiate(Resources.Load(path)) as GameObject;
+            GameObject item = LoadItem((ItemInventoryController.ITEM)i);
             itemPrefabs.Add(item);
 
             item.SetActive(false);
